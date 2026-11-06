@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { parseSets, type RoutineDay, type Exercise } from '../data/routine';
+import { parseSets, type RoutineDay, type Exercise } from '../lib/routineStore';
 import {
   type Session,
   type SetEntry,

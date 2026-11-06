@@ -461,3 +461,157 @@ input, textarea, select {
 }
 .about { text-align: center; color: var(--muted); font-size: 13px; padding: 20px 0; }
 .about .hint { margin-top: 4px; }
+
+/* ---------- EDITOR ---------- */
+.editor {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+.editor-hint {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 4px 0 14px;
+}
+.day-edit {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.day-edit-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.day-name-input {
+  flex: 1;
+  background: var(--bg-2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+.day-edit-actions, .ex-edit-actions {
+  display: flex;
+  gap: 4px;
+}
+.day-edit-info {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 6px 0 0;
+}
+.ghost.small {
+  padding: 8px 10px;
+  font-size: 14px;
+  min-width: 36px;
+}
+.ghost.small.danger { color: var(--danger); }
+.ex-edit-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ex-edit {
+  background: var(--bg-2);
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.ex-edit.warmup { border-color: rgba(245,158,11,0.3); }
+.ex-edit-top {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.ex-name-input {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+}
+.ex-edit-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  align-items: flex-end;
+}
+.ex-edit-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+  flex: 1;
+}
+.ex-edit-row input {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+}
+.check-label {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px !important;
+  padding-bottom: 8px;
+}
+.check-label input { width: auto; }
+.ex-notes-input {
+  width: 100%;
+  margin-top: 8px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+  min-height: 50px;
+  resize: vertical;
+  color: var(--text);
+}
+.add-ex {
+  margin-top: 4px;
+  width: 100%;
+  padding: 10px;
+}
+.add-day {
+  margin: 8px 0 20px;
+  width: 100%;
+  padding: 14px;
+}
+.reset-section {
+  margin-top: 20px;
+  text-align: center;
+}
+.reset-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  background: var(--card);
+  padding: 14px;
+  border-radius: 12px;
+}
+.reset-confirm p { margin: 0; color: var(--muted); font-size: 13px; }
+.reset-confirm button { width: 100%; }
+
+/* ---------- HOME extras ---------- */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+.empty-state .primary { margin-top: 12px; width: auto; padding: 12px 24px; }
+.edit-routine-btn {
+  margin: 20px auto;
+  display: block;
+  width: auto;
+  padding: 10px 18px;
+}

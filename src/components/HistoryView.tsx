@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ROUTINE } from '../data/routine';
+import { loadRoutine } from '../lib/routineStore';
 import { loadSessions, deleteSession, exerciseHistory, type Session } from '../lib/storage';
 import { ProgressChart } from './ProgressChart';
 
@@ -9,12 +9,13 @@ interface Props {
 
 export function HistoryView({ onExit }: Props) {
   const [tick, setTick] = useState(0);
-  const [selectedEx, setSelectedEx] = useState<string>(ROUTINE[0].exercises[2].id);
+  const [selectedEx, setSelectedEx] = useState<string>('');
+  const routine = useMemo(() => loadRoutine(), [tick]);
   const sessions = useMemo<Session[]>(() => loadSessions(), [tick]);
 
-  const allExercises = ROUTINE.flatMap((d) => d.exercises.map((e) => ({ ...e, dayName: d.name })));
-  const ex = allExercises.find((e) => e.id === selectedEx)!;
-  const hist = useMemo(() => exerciseHistory(selectedEx), [selectedEx, tick]);
+  const allExercises = routine.flatMap((d) => d.exercises.map((e) => ({ ...e, dayName: d.name })));
+  const ex = allExercises.find((e) => e.id === selectedEx) ?? allExercises[0];
+  const hist = useMemo(() => (selectedEx ? exerciseHistory(selectedEx) : []), [selectedEx, tick]);
 
   function refresh() {
     setTick((t) => t + 1);
@@ -38,8 +39,12 @@ export function HistoryView({ onExit }: Props) {
 
       <section className="progress-section">
         <h3>Progreso de un ejercicio</h3>
+        {allExercises.length === 0 ? (
+          <p className="empty">No hay ejercicios en la rutina. Editá la rutina primero.</p>
+        ) : (
+          <>
         <select value={selectedEx} onChange={(e) => setSelectedEx(e.target.value)} className="ex-select">
-          {ROUTINE.map((d) => (
+          {routine.map((d) => (
             <optgroup key={d.id} label={d.name}>
               {d.exercises.filter((e) => !e.warmup).map((e) => (
                 <option key={e.id} value={e.id}>{e.name}</option>
@@ -47,6 +52,7 @@ export function HistoryView({ onExit }: Props) {
             </optgroup>
           ))}
         </select>
+        {ex && (
         <div className="ex-info">
           <span className="badge">{ex.setsReps}</span>
           <span className="badge prev">{hist.filter((h) => h.top > 0).length} registros</span>
@@ -54,6 +60,7 @@ export function HistoryView({ onExit }: Props) {
             <span className="badge prev">Último: {hist[hist.length - 1].top}kg</span>
           )}
         </div>
+        )}
         <ProgressChart data={hist} />
         <div className="hist-list">
           {[...hist].reverse().map((h, i) => (
@@ -63,6 +70,8 @@ export function HistoryView({ onExit }: Props) {
             </div>
           ))}
         </div>
+          </>
+        )}
       </section>
 
       <section className="sessions-list">
